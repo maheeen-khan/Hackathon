@@ -27,3 +27,19 @@ button, input, .card{
 .both{
     border-radius: 19px !important;
 }
+.btnedit{
+    background-color: rgb(209, 209, 248) !important;
+}
+.btndlt{
+    background-color: rgb(182, 182, 182) !important;
+}
+.btndlt:hover{
+    color: white !important;
+}
+.btnedit:hover{
+    background-color: rgb(60, 60, 121) !important;
+    color: white !important;
+}
+.card-title{
+    color: rgb(52, 52, 138) !important;
+}

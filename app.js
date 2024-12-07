@@ -325,8 +325,8 @@ async function readData() {
                   <p class="card-text p-2">${item.content}</p>
                  <button type="button" class="btn btn-outline-secondary btn-sm catBtn">${item.category}</button>
                  <span id="guest" class="mt-3 ms-2">By ${localStorage.getItem('name')}</span> <br>
-                  <button class="dltBtn btn btn-danger mt-3" data-id="${item.docId}">Delete</button>
-                  <button class="edtBtn btn btn-warning  mt-3" data-id="${item.docId}">Edit</button>
+                  <button class="dltBtn btn btndlt mt-3" data-id="${item.docId}">Delete</button>
+                  <button class="edtBtn btn btnedit mt-3" data-id="${item.docId}">Edit</button>
                 </div>
             </div>`;
     });
