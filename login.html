@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+
+        <!-- Sweet alert -->
+    <link href="
+        https://cdn.jsdelivr.net/npm/sweetalert2@11.14.4/dist/sweetalert2.min.css
+        " rel="stylesheet">
+         <!-- sweet alert js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        :root {
+            --light-color: pink;
+            --gradient: linear-gradient(270deg, pink, rgb(200, 68, 90));
+            --color: rgb(200, 68, 90);
+        }
+
+        .google {
+            width: 34px;
+            height: 36px;
+        }
+
+
+        #or {
+            width: 90%;
+            text-align: center;
+            border-bottom: 1px solid #9a9a9a;
+            line-height: 0.1em;
+            margin: 10px 0 20px;
+            font-size: 12px;
+        }
+
+        #or span {
+            background: #fff;
+            padding: 0 10px;
+        }
+
+        input {
+            border-radius: 20px;
+            width: 90%;
+            border: none;
+            background-color: var(--light-color);
+        }
+
+        .register {
+            width: 30%;
+            border-radius: 20px;
+            background: var(--gradient);
+            color: white;
+        }
+
+        .register:hover {
+            background: white;
+            border: 3px double var(--color);
+            box-shadow: 2px 2px 10px var(--color),
+                -2px -2px 10px var(--color);
+            color: var(--color);
+        }
+
+        .sign-up {
+            background-color: white;
+            color: rgb(200, 68, 90);
+            width: 60%;
+            border-radius: 25px;
+            border: 2px double var(--color);
+            box-shadow: 2px 2px 10px white,
+                -2px -2px 10px white;
+        }
+
+        .sign-up:hover {
+            color: white;
+        }
+
+        .main-login {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 39px;
+        }
+
+        .sec-col-heading {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: white;
+        }
+
+        .sec-col {
+            background: var(--gradient);
+            /* height: 90vh; */
+        }
+
+        .first-col,
+        .sec-col {
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        }
+
+        .highlight {
+            color: var(--color);
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        .first-col:hover {
+            filter: flip;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="two">
+        <div class="row d-flex justify-content-center mt-5 p-3 login-row">
+    
+           
+            <div class="col-lg-5 col-md-5 col-sm-12 text-center first-col pb-5" id="login">
+    
+                <h2 class="main-login mt-5"><span class="highlight">Login</span> to your Account</h2>
+                <p style="color: rgb(168, 168, 168);">Login using social networks</p>
+    
+                <div class="all-networks   d-flex justify-content-center align-items-center mb-5">
+                   
+                    <div class="networks">
+                        <!-- <a href="" id="google"> -->
+                            <img src="../images/google-removebg-preview.png" alt="Google" class="google" id="google" >
+                        <!-- </a> -->
+                    </div>
+                 
+                </div>
+    
+                <p id="or" class="mx-auto"> <span> OR </span></p>
+    
+                <input type="email" name="email" id="login-email" placeholder="Email" class="mb-4 p-2" title="email"
+                    maxlength="40" required> <br>
+    
+                <input type="password" name="password" id="login-password" placeholder="Password" class="p-2"
+                    pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}"
+                    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                    maxlength="20" required>
+    
+                <br>
+
+                <p class="line mt-3">Not have an account ? <a href="./register.html">Go to Sign up</a></p>
+                <button class="btn mt-4 register" id="login">Login</button>
+    
+            </div>
+    
+        </div>
+    </div>
+    <script src="firebase.js" type="module"></script>
+    <script src="app.js" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+</body>
+</html>

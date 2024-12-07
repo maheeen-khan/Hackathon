@@ -1,0 +1,29 @@
+#logo{
+    width: 23px;
+}
+.sideBar{
+    font-size: 13px;
+}
+.btns button, .catBtn{
+    border-radius: 19px !important;
+}
+#addPost{
+    display: none;
+}
+#guest{
+    font-size: 12px;
+    color: rgb(40, 40, 209);
+}
+
+button, input, .card{
+    border-radius: 19px !important;
+}
+.card{
+    background-color: rgb(245, 245, 245) !important;
+}
+.navbar{
+    background-color: rgb(209, 209, 248);
+}
+.both{
+    border-radius: 19px !important;
+}

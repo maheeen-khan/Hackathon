@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
+            <!-- Sweet alert -->
+            <link href="
+            https://cdn.jsdelivr.net/npm/sweetalert2@11.14.4/dist/sweetalert2.min.css
+            " rel="stylesheet">
+             <!-- sweet alert js -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="./images/7ab5b2fcae9fe6153eb9797b1b1435b7.png" alt="logo" id="logo">
+            Coranu
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn  btn-outline-primary" type="submit">Search</button>
+              </form>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item me-2">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item me-2">
+                <a class="nav-link active" aria-current="page" href="#">Market</a>
+              </li>
+              <li class="nav-item me-2">
+                <a class="nav-link active" aria-current="page" href="#">Blog</a>
+              </li>
+              <li class="nav-item me-2">
+                <a class="nav-link active" aria-current="page" href="#">Career</a>
+              </li>
+              <li class="nav-item me-2">
+                <button type="button" class="btn btn-dark" id="addPost" style="display: none;">Add post</button>
+
+              </li>
+              <li class="nav-item me-2">
+                <button type="button" class="btn btn-primary" id="gotoLogin">Login</button>
+              </li>
+            </ul>
+         
+          </div>
+        </div>
+      </nav>
+      <div class="container">
+<div class="head mt-4">
+
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12">
+    <h2 style="color: rgb(62, 62, 214);" class="mt-3 mb-3">Insights from our team</h2>
+    <p style="color: grey;">Powerful Trading Tools and Features for Experienced Investors</p> </div>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+    <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn  btn-outline-primary" type="submit">Search</button>
+      </form>
+    </div>
+    </div>
+</div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-12 mt-5">
+                <div class="row sideBar " style="background-color: rgb(209, 209, 248);">
+                    <div class="col both pt-2">
+                        <h6>Blog Topics</h6>
+                        <p>Company</p>
+                        <p>Design</p>
+                        <p>Technology</p>
+                        <p>Crypto</p>
+                        <p>Artificial Intelligence</p>
+                        <p>Work</p>
+                    </div>
+                </div>
+                <div class="row  sideBar p-2 pt-3" style="background-color: rgb(137, 137, 193);">
+                    <div class="col">
+                        <h6>Guide and Tools</h6>
+                        <p>Guidelines</p>
+                        <p>Mentorship</p>
+                        <p>Tutorial</p>
+                        <p>Training</p>
+                        <p>Career</p>
+                        <p>Self Care</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col ps-5 pt-5">
+                <div class="row">
+                    <div class="col">
+                        <h5>Trending Topics</h5>
+                        <div class="btns p-2">
+                            <button type="button" class="btn btn-outline-secondary">Design Thinking</button>
+                            <button type="button" class="btn btn-outline-secondary">Technology</button>
+                            <button type="button" class="btn btn-outline-secondary">Web3</button>
+                            <button type="button" class="btn btn-outline-secondary">Programming</button>
+                            <button type="button" class="btn btn-outline-secondary">AI</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="displayPosts" class="mt-5">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Check if the flag is set in localStorage
+        const showButton = localStorage.getItem('showAddPostButton');
+
+        if (showButton === 'true') {
+            // Make the button visible
+            document.getElementById('addPost').style.display = 'block';
+
+            // Show an alert
+            alert('Now you can Add Post!');
+
+            // Clear the flag to avoid showing the button again
+            localStorage.removeItem('showAddPostButton');
+        }
+    });
+</script>
+
+    <script src="bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+    <script type="module" src="firebase.js" type="module"></script>
+    <script src="app.js" type="module"></script>
+</body>
+</html>
