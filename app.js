@@ -293,7 +293,7 @@ async function addmyDoc() {
         });
         // title = "";
         // selectedValue= "";
-        alert("Document written with ID: ", docRef.id);
+        // alert("Document written with ID: ", docRef.id);
     }
 
     catch (e) {
@@ -333,13 +333,33 @@ async function readData() {
         btn.addEventListener('click', async (e) => {
             const docId = e.target.getAttribute("data-id"); // Get document ID from button's data-id attribute
             console.log("Deleting document with ID:", docId);
-            try {
-                await deleteDoc(doc(db, "users", docId)); // Delete the document
-                console.log(`Document ${docId} deleted successfully.`);
-                readData(); // Refresh the displayed data
-            } catch (err) {
-                console.error("Error deleting document:", err);
-            }
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+              }).then(async(result) => {
+                if (result.isConfirmed) {
+                    try {
+                        await deleteDoc(doc(db, "users", docId)); // Delete the document
+                        console.log(`Document ${docId} deleted successfully.`);
+                        readData(); // Refresh the displayed data
+                    } catch (err) {
+                        console.error("Error deleting document:", err);
+                    }
+
+                  Swal.fire({
+                    title: "Deleted!",
+                    text: "Your post has been deleted.",
+                    icon: "success"
+                  });
+                }
+              });
+            
         });
     });
 
@@ -400,3 +420,39 @@ async function readData() {
 
 
 readData()
+
+    setTimeout(()=>{
+       
+        Swal.fire({
+            title: 'Welcome to Blogging Haven! 📝',
+            text: 'Please log in to share your amazing stories with the world.',
+            showCancelButton: true,
+            confirmButtonText: 'Login Now',
+            cancelButtonText: 'Later',
+            background: '#fff5f8', // Adds a soft pink background
+            color: '#333', // Text color
+            confirmButtonColor: 'rgb(60, 60, 121)', // Cute pink confirm button
+            cancelButtonColor: '#c7c7c7', // Light gray cancel button
+            imageUrl: '../images/happy.png', // Add a cute image/icon URL
+            imageWidth: 150,
+            imageHeight: 100,
+            imageAlt: 'Cute icon',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // Redirect user to the login page
+              window.location.href = './login.html';
+            } else {
+              Swal.fire({
+                title: 'OK',
+                text: 'We’ll be waiting for your wonderful posts!',
+                icon: 'success',
+                timer: 3000,
+                showConfirmButton: false,
+              });
+            }
+          });
+          
+
+
+    }, 10000)
+
