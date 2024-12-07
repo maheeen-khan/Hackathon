@@ -28,24 +28,20 @@ if (document.getElementById('gotoLogin')) {
 
 //Auth//
 onAuthStateChanged(auth, (user) => {
-    console.log("Auth state changed:", user);
     if (user) {
-
-        // User is signed in
-        const uid = user.uid;
-        console.log("user exists", user);
-        console.log("user id ", uid);
-
-        localStorage.setItem('user id', user.uid)
+        console.log("User exists:", user);
+        
+        // Store user details in localStorage
+        const name = user.displayName || user.email.split('@')[0].replace(/[0-9]/g, ''); // Fallback to email username
+        localStorage.setItem('name', name);
         localStorage.setItem('email', user.email);
-        localStorage.setItem('name', user.
-            displayName)
-
     } else {
-        // User is signed out
-        console.log("user does not exist", user);
+        console.log("User is signed out.");
+        localStorage.removeItem('name');
+        localStorage.removeItem('email');
     }
 });
+
 let user_id = localStorage.getItem('user id');
 let user_email = localStorage.getItem('email');
 let user_name = localStorage.getItem('name');
@@ -194,6 +190,7 @@ if (loginBtn) {
                     localStorage.setItem('email', loginEmail.value)
 
                     setTimeout(() => {
+                        window.location.reload();
                         window.location.href = "./index.html";
                         
                         localStorage.setItem('showAddPostButton', true); 
@@ -318,13 +315,13 @@ async function readData() {
 
     arr.map((item, index) => {
         displayPosts.innerHTML += `
-            <div class="card p-3">
+            <div class="card p-3 mb-3">
                 <div class="card-body">
                   <h3 class="card-title">${item.title}</h3>
                   
                   <p class="card-text p-2">${item.content}</p>
                  <button type="button" class="btn btn-outline-secondary btn-sm catBtn">${item.category}</button>
-                 <span id="guest" class="mt-3 ms-2">By ${localStorage.getItem('name')}</span> <br>
+                 <span id="guest" class="mt-3 ms-2">By ${localStorage.getItem('name')  || 'Guest'}</span> <br>
                   <button class="dltBtn btn btndlt mt-3" data-id="${item.docId}">Delete</button>
                   <button class="edtBtn btn btnedit mt-3" data-id="${item.docId}">Edit</button>
                 </div>

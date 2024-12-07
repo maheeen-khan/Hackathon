@@ -43,3 +43,12 @@ button, input, .card{
 .card-title{
     color: rgb(52, 52, 138) !important;
 }
+.above{
+    position:fixed !important;
+    top: 0;
+    left: 0 !important;
+    z-index: 2;
+}
+.start{
+    margin-top: 90px !important;
+}
