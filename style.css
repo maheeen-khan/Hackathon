@@ -96,6 +96,31 @@ button, input, .card{
     -webkit-text-fill-color: transparent;
 }
 
+.all{
+    background-color: var(--mycolor) !important;
+    color: white !important;
+}
+.all:hover{
+    background-color: var(--lightColor) !important;
+}
+.otherBtns{
+    border: 1px solid rgb(160, 160, 203) !important;
+    color: var(--mycolor) !important;
+}
+.otherBtns:hover{
+    background-color: rgb(160, 160, 203) !important;
+    color: white !important;
+}
+.loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: #555;
+    z-index: 1000;
+}
+
 @media screen and (max-width:768px){
     .opt{
         margin-bottom: 15px !important;

@@ -72,7 +72,7 @@
 
 <body>
 
-
+<!-- <div class="first w-100 text-center" style="background-color: rgb(212, 212, 241); font-style: italic; font-size: small;">Unlock your creativity and transform your ideas into reality with our interactive design-thinking blog!</div> -->
   <!-- <nav class="navbar navbar-expand-lg p-3 above w-100">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
@@ -115,7 +115,7 @@
     </div>
   </nav> -->
   
-  <button class="btn mt-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+  <button class="btn mt-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
     
     <img src="./images/logo.png" alt="logo" id="logo">
        <span class="logo-head"> Coranu </span>
@@ -144,10 +144,10 @@
                       <p>Work</p> -->
 
             <ul class="sidenav text-center">
-              <li><span>AI</span></li>
-              <li><span>Web3</span></li>
-              <li><span>Design</span></li>
-              <li><span>Technology</span></li>
+              <li><span id="ai">AI</span></li>
+              <li><span id="web3">Web3</span></li>
+              <li><span id="design">Design</span></li>
+              <li><span id="tech">Technology</span></li>
               <!-- <li><span>Work</span></li> -->
 
             </ul>
@@ -256,13 +256,14 @@
         <div class="col pt-5">
           <div class="row">
             <div class="col">
-              <h5 style="color: rgb(189, 189, 189);" id="trending">Trending Topics</h5>
+              <h5 style="color: rgb(171, 171, 171);" id="trending">Trending Topics</h5>
               <div class="btns pt-2">
-                <button type="button" class="btn btn-outline-secondary opt">Design Thinking</button>
-                <button type="button" class="btn btn-outline-secondary opt">Technology</button>
-                <button type="button" class="btn btn-outline-secondary opt">Web3</button>
-                <button type="button" class="btn btn-outline-secondary opt">Programming</button>
-                <button type="button" class="btn btn-outline-secondary opt">AI</button>
+                <button type="button" class="btn all category-btn opt" data-category="all" >All Posts</button>
+                <button type="button" class="btn category-btn otherBtns opt" data-category="Design Thinking" >Design Thinking</button>
+                <button type="button" class="btn category-btn otherBtns opt" data-category="Technology">Technology</button>
+                <button type="button" class="btn category-btn otherBtns opt" data-category="Web3">Web3</button>
+                <button type="button" class="btn category-btn otherBtns opt" data-category="Programming">Programming</button>
+                <button type="button" class="btn category-btn otherBtns opt" data-category="AI">AI</button>
               </div>
             </div>
           </div>

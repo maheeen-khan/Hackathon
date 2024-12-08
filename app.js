@@ -322,7 +322,7 @@ async function readData() {
             <div class="card p-lg-3 mb-3">
                 <div class="card-body">
                 <small class="text-muted">Posted on: ${formattedDate}</small>
-                  <h3 class="card-title mt-3 pt-2">${item.title}</h3>
+                  <h3 class="card-title mt-5">${item.title}</h3>
                   <p class="card-text p-2">${item.content}</p>
                   <button type="button" class="btn btn-outline-secondary btn-sm catBtn">${item.category}</button>
                   <span id="guest" class="mt-3 ms-2">By ${item.author || 'Guest'}</span>
@@ -424,6 +424,99 @@ async function readData() {
     });
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    // Attach event listeners to category buttons
+    document.querySelectorAll('.category-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const category = e.target.getAttribute('data-category'); // Get category from data attribute
+            if (category === "all") {
+                displayAllPosts(); // Display all posts
+            } else {
+                displayCategoryPosts(category); // Display posts for a specific category
+            }
+        });
+    });
 
-readData()
+    // Load all posts by default on page load
+    displayAllPosts();
+});
+
+async function displayAllPosts() {
+    // Clear the container first to prevent duplicate rendering
+    displayPosts.innerHTML = "";
+
+    try {
+        let arr = [];
+        const q = query(collection(db, "users"), orderBy("timestamp", "desc")); // Fetch all posts ordered by timestamp
+        const querySnapshot = await getDocs(q);
+
+        querySnapshot.forEach((doc) => {
+            arr.push({ ...doc.data(), docId: doc.id });
+        });
+
+        if (arr.length === 0) {
+            displayPosts.innerHTML = `<p class="text-muted text-center">No posts available.</p>`;
+            return;
+        }
+
+        arr.forEach((item) => {
+            const postDate = item.timestamp ? new Date(item.timestamp.seconds * 1000) : null;
+            const formattedDate = postDate ? postDate.toLocaleString() : "Unknown date";
+
+            displayPosts.innerHTML += `
+                <div class="card p-lg-3 mb-3">
+                    <div class="card-body">
+                        <small class="text-muted">Posted on: ${formattedDate}</small>
+                        <h3 class="card-title mt-3 pt-2">${item.title}</h3>
+                        <p class="card-text p-2">${item.content}</p>
+                        <button type="button" class="btn btn-outline-secondary btn-sm catBtn">${item.category}</button>
+                        <span id="guest" class="mt-3 ms-2">By ${item.author || 'Guest'}</span>
+                    </div>
+                </div>`;
+        });
+    } catch (error) {
+        console.error("Error fetching all posts:", error);
+    }
+}
+
+async function displayCategoryPosts(category) {
+    // Clear the container first to prevent duplicate rendering
+    displayPosts.innerHTML = "";
+
+    try {
+        let arr = [];
+        const q = query(collection(db, "users"), orderBy("timestamp", "desc")); // Fetch all posts ordered by timestamp
+        const querySnapshot = await getDocs(q);
+
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            if (data.category === category) {
+                arr.push({ ...data, docId: doc.id });
+            }
+        });
+
+        if (arr.length === 0) {
+            displayPosts.innerHTML = `<p class="text-muted text-center">No posts available in the "${category}" category.</p>`;
+            return;
+        }
+
+        arr.forEach((item) => {
+            const postDate = item.timestamp ? new Date(item.timestamp.seconds * 1000) : null;
+            const formattedDate = postDate ? postDate.toLocaleString() : "Unknown date";
+
+            displayPosts.innerHTML += `
+                <div class="card p-lg-3 mb-3">
+                    <div class="card-body">
+                        <small class="text-muted">Posted on: ${formattedDate}</small>
+                        <h3 class="card-title mt-3 pt-2">${item.title}</h3>
+                        <p class="card-text p-2">${item.content}</p>
+                        <button type="button" class="btn btn-outline-secondary btn-sm catBtn">${item.category}</button>
+                        <span id="guest" class="mt-3 ms-2">By ${item.author || 'Guest'}</span>
+                    </div>
+                </div>`;
+        });
+    } catch (error) {
+        console.error(`Error fetching posts for category ${category}:`, error);
+    }
+}
 
