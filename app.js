@@ -227,11 +227,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     <textarea id="blogContent" class="swal2-textarea" placeholder="Write your blog here..."></textarea>
                     <select id="blogCategory" class="swal2-select">
                         <option value="" disabled selected>Select Category</option>
-                        <option value="Technology">Design Thinking</option>
-                        <option value="Lifestyle">Technology</option>
-                        <option value="Education">Web3</option>
-                        <option value="Health">Programming</option>
-                        <option value="Education">AI</option>
+                        <option value="Design Thinking">Design Thinking</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Web3">Web3</option>
+                        <option value="Programming">Programming</option>
+                        <option value="AI">AI</option>
                     </select>
                 `,
                 focusConfirm: false,
@@ -289,6 +289,8 @@ async function addmyDoc() {
             title: myTitle,
             content: myContent,
             category:myCategory,
+            timestamp: Timestamp.now(), // Add the current timestamp
+            author: localStorage.getItem('name') || 'Guest'
 
         });
         // title = "";
@@ -306,22 +308,26 @@ async function readData() {
     let arr = [];
     displayPosts.innerHTML = ""; // Clear posts before rendering new ones
 
-    const q = query(collection(db, "users"));
+    const q = query(collection(db, "users"), orderBy("timestamp", "desc")); // Order posts by most recent
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
         arr.push({ ...doc.data(), docId: doc.id });
-        console.log(doc.id, " => ", doc.data());
     });
 
     arr.map((item, index) => {
+        const postDate = item.timestamp ? new Date(item.timestamp.seconds * 1000) : null;
+        const formattedDate = postDate ? postDate.toLocaleString() : "Unknown date";
+
         displayPosts.innerHTML += `
-            <div class="card p-3 mb-3">
+            <div class="card p-lg-3 mb-3">
                 <div class="card-body">
-                  <h3 class="card-title">${item.title}</h3>
-                  
+                <small class="text-muted">Posted on: ${formattedDate}</small>
+                  <h3 class="card-title mt-3 pt-2">${item.title}</h3>
                   <p class="card-text p-2">${item.content}</p>
-                 <button type="button" class="btn btn-outline-secondary btn-sm catBtn">${item.category}</button>
-                 <span id="guest" class="mt-3 ms-2">By ${localStorage.getItem('name')  || 'Guest'}</span> <br>
+                  <button type="button" class="btn btn-outline-secondary btn-sm catBtn">${item.category}</button>
+                  <span id="guest" class="mt-3 ms-2">By ${item.author || 'Guest'}</span>
+                  
+                  <br>
                   <button class="dltBtn btn btndlt mt-3" data-id="${item.docId}">Delete</button>
                   <button class="edtBtn btn btnedit mt-3" data-id="${item.docId}">Edit</button>
                 </div>
@@ -420,39 +426,4 @@ async function readData() {
 
 
 readData()
-
-    setTimeout(()=>{
-       
-        Swal.fire({
-            title: 'Welcome to Blogging Haven! 📝',
-            text: 'Please log in to share your amazing stories with the world.',
-            showCancelButton: true,
-            confirmButtonText: 'Login Now',
-            cancelButtonText: 'Later',
-            background: '#fff5f8', // Adds a soft pink background
-            color: '#333', // Text color
-            confirmButtonColor: 'rgb(60, 60, 121)', // Cute pink confirm button
-            cancelButtonColor: '#c7c7c7', // Light gray cancel button
-            imageUrl: '../images/happy.png', // Add a cute image/icon URL
-            imageWidth: 150,
-            imageHeight: 100,
-            imageAlt: 'Cute icon',
-          }).then((result) => {
-            if (result.isConfirmed) {
-              // Redirect user to the login page
-              window.location.href = './login.html';
-            } else {
-              Swal.fire({
-                title: 'OK',
-                text: 'We’ll be waiting for your wonderful posts!',
-                icon: 'success',
-                timer: 3000,
-                showConfirmButton: false,
-              });
-            }
-          });
-          
-
-
-    }, 10000)
 

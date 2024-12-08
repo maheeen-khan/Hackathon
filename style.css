@@ -1,14 +1,18 @@
+:root{
+    --mycolor: rgb(44, 44, 155);
+}
+:root{
+    --lightColor: rgb(96, 96, 192);
+}
 #logo{
-    width: 23px;
+    width: 57px;
+    animation: logoAnimate 9s linear infinite;
 }
 .sideBar{
     font-size: 13px;
 }
 .btns button, .catBtn{
     border-radius: 19px !important;
-}
-#addPost{
-    display: none;
 }
 #guest{
     font-size: 12px;
@@ -49,6 +53,61 @@ button, input, .card{
     left: 0 !important;
     z-index: 2;
 }
-.start{
+ .myoffcanvas{
     margin-top: 90px !important;
+}
+.btnLogin{
+    background-color: var(--mycolor) !important;
+    color: white !important;
+}
+.btnLogin:hover{
+    background-color: var(--lightColor) !important;
+    color: white !important;
+}
+.btnsearch{
+    border: 1px solid var(--mycolor) !important;
+    color: var(--mycolor) !important;
+}
+.btnsearch:hover{
+    background-color: var(--mycolor) !important;
+    color: white !important;
+}
+#addPost{
+    width: 40px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: 2;
+}
+.offcanvas {
+    width: 300px !important; /* Adjust the width to your preference */
+}
+.mybg{
+    background-color: rgb(137, 137, 193) !important;
+}
+.logo-head{
+    font-size: 1.3em;
+    font-weight: bold;
+    font-style: italic;
+    background: #FF0000;
+    background: linear-gradient(to left, hsl(214, 67%, 91%) 0%, #06538e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@media screen and (max-width:768px){
+    .opt{
+        margin-bottom: 15px !important;
+    }
+    
+}
+
+@keyframes logoAnimate {
+    from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
 }
