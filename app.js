@@ -520,3 +520,9 @@ async function displayCategoryPosts(category) {
     }
 }
 
+document.getElementById('searchBtn').addEventListener('click', (event)=>{
+    event.preventDefault();
+    var searchVal = document.getElementById('search-val').value;
+    console.log(searchVal)
+    displayCategoryPosts(searchVal);
+})
